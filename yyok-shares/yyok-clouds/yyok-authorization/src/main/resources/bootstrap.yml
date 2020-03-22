@@ -1,0 +1,27 @@
+logging:
+  level:
+    com.yyok: DEBUG
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    eviction-interval-timer-in-ms: 4000
+    enable-self-preservation: false
+    renewal-percent-threshold: 0.9
+merryyou:
+  security:
+    oauth2:
+      storeType: jwt #或者jwt
+      jwtSigningKey: merryyou
+      clients[0]:
+        clientId: merryyou
+        clientSecret: merryyou
+      clients[1]:
+        clientId: yyok1
+        clientSecret: yyok1

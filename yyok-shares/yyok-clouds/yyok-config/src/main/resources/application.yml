@@ -1,0 +1,26 @@
+server:
+  port: 8762 #启动端口
+
+spring:
+  application:
+    name: yyok-config
+  devtools:
+    add-properties: true
+  profiles:
+    active: native
+  # 配置中心
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config/
+
+# 注册中心配置
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://yyok:yyok@localhost:8761/eureka/

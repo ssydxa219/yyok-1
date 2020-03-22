@@ -1,0 +1,19 @@
+server:
+  port: 8765 #启动端口
+
+spring:
+  name: yyok-authorization
+  security:
+    user:
+      name: yyok
+      password: yyok
+  devtools:
+    add-properties: true
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          # 项目名称可以小写
+          lowerCaseServiceId: true
+

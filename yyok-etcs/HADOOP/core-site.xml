@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://yyok</value>
+    </property>
+    <property>
+        <name>io.file.buffer.size</name>
+        <value>1281072</value>
+    </property>
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/ddhome/local/hadoop/tmp</value>
+    </property>
+    <property>
+        <name>dfs.journalnode.edits.dir</name>
+        <value>/ddhome/local/hadoop/journalnode</value>
+    </property>
+    <property>
+        <name>ha.zookeeper.quorum</name>
+        <value>dda:2181,ddb:2181,ddc:2181</value>
+    </property>
+    <!--修改core-site.xml中的ipc参数,防止出现连接journalnode服务ConnectException-->
+    <property>
+        <name>ipc.client.connect.max.retries</name>
+        <value>5000</value>
+        <description>Indicates the number of retries a client will make to establish a server connection.</description>
+    </property>
+    <property>
+        <name>ipc.client.connect.retry.interval</name>
+        <value>10000</value>
+        <description>Indicates the number of milliseconds a client will wait for before retrying to establish a server connection.</description>
+    </property>
+    <property>
+        <name>hadoop.native.lib</name>
+        <value>true</value>
+        <description>Should native hadoop libraries, if present, be used.</description>
+    </property>
+
+    <property>
+        <name>hadoop.proxyuser.hdfs.hosts</name>
+        <value>*</value>
+        <description>Defines the Unix user, hdfs, that will run the HttpFS server as a proxyuser.</description>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.hdfs.groups</name>
+        <value>*</value>
+        <description>Replaces hdfs with the Unix user that will start the HttpFS server.</description>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.root.hosts</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.root.groups</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.hive.hosts</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.hive.groups</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.admin.hosts</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.admin.groups</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.hue.hosts</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.hue.groups</name>
+        <value>*</value>
+    </property>
+    httpfs-site.xml
+    <property>
+        <name>httpfs.proxyuser.hue.hosts</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>httpfs.proxyuser.hue.groups</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.httpfs.hosts</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.httpfs.groups</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.superuser.hosts</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.superuser.groups</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.hbase.hosts</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.hbase.groups</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>ha.zookeeper.session-timeout.ms</name>
+        <value>30000</value>
+        <description>ms</description>
+    </property>
+    <property>
+        <name>fs.trash.interval</name>
+        <value>10320</value>
+    </property>
+    <property>
+        <name>fs.trash.checkpoint.interval</name>
+        <value>10</value>
+    </property>
+    <property>
+        <name>dfs.ha.fencing.methods</name>
+        <value>null</value>
+    </property>
+</configuration>

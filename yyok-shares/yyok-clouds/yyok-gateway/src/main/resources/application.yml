@@ -1,0 +1,8 @@
+server:
+  port: 8763 #启动端口
+
+spring:
+  application:
+    name: yyok-gateway
+  devtools:
+    add-properties: true

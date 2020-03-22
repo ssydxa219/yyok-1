@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>yyok</artifactId>
+        <groupId>com.yyok</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>yyok-shares</artifactId>
+    <packaging>pom</packaging>
+    <name>yyok-shares</name>
+    <url>http://maven.apache.org</url>
+
+    <modules>
+        <module>yyok-common</module>
+        <module>yyok-linux</module>
+        <module>yyok-boot</module>
+        <module>yyok-clouds</module>
+        <module>yyok-bigdatas</module>
+        <module>yyok-cache</module>
+        <module>yyok-databases</module>
+        <module>yyok-admin</module>
+        <module>yyok-springs</module>
+    </modules>
+
+
+</project>

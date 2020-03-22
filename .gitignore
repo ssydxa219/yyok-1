@@ -3,8 +3,9 @@
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 .svn
-test/
-out/
+test
+out
+App.java
 
 ### STS ###
 .settings/

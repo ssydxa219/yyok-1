@@ -1,0 +1,11 @@
+server:
+  port: 8761 #启动端口
+
+spring:
+  name: yyok-center
+  security:
+    user:
+      name: yyok
+      password: yyok
+  devtools:
+    add-properties: true
