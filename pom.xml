@@ -23,9 +23,9 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.test.skip>true</maven.test.skip>
         <spring.version>5.2.4.RELEASE</spring.version>
-        <!--<spring-cloud.version>2.1.4.RELEASE</spring-cloud.version>-->
+        <spring-cloud.version>2.1.4.RELEASE</spring-cloud.version>
         <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
-        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+        <spring-cloud-dependencies.version>Greenwich.RELEASE</spring-cloud-dependencies.version>
         <spring-platform.version>Cairo-SR7</spring-platform.version>
         <hutool.version>4.4.5</hutool.version>
         <mybatis-plus.version>3.1.0</mybatis-plus.version>
@@ -41,6 +41,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--jackson模块-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-modules-java8</artifactId>
+                <version>${jackson.modules}</version>
+            </dependency>
             <!--spring framework -->
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -238,14 +244,34 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
+            </dependency>
+
+            <!--服务中心-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
                 <version>${spring-cloud.version}</version>
             </dependency>
 
-            <!--jackson模块-->
             <dependency>
-                <groupId>com.fasterxml.jackson.module</groupId>
-                <artifactId>jackson-modules-java8</artifactId>
-                <version>${jackson.modules}</version>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+                <version>${spring-cloud.version}</version>
+            </dependency>
+
+            <!--配置中心客户端-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-config</artifactId>
+                <version>${spring-cloud.version}</version>
+            </dependency>
+
+            <!--security-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-security</artifactId>
+                <version>${spring-cloud.version}</version>
             </dependency>
 
             <dependency>

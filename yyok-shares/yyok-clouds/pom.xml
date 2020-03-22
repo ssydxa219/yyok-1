@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>yyok-clouds</artifactId>
-    <version>${parent.version}</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>yyok-clouds</name>
     <url>http://maven.apache.org</url>
@@ -33,7 +33,6 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${spring-boot.version}</version>
                     <configuration>
                         <finalName>${project.build.finalName}</finalName>
                     </configuration>
@@ -52,8 +51,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <target>${maven.compiler.target}</target>
-                    <source>${maven.compiler.source}</source>
+                    <target>1.8</target>
+                    <source>1.8</source>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>

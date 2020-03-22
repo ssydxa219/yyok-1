@@ -11,28 +11,23 @@
     <name>yyok-center</name>
     <url>http://maven.apache.org</url>
     <description>服务注册中心</description>
-    <properties>
-        <spring-cloud.version>2.1.4.RELEASE</spring-cloud.version>
-    </properties>
+
     <dependencies>
         <!--服务中心-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-            <version>${spring-cloud.version}</version>
         </dependency>
         <!--配置中心客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
-            <version>${spring-cloud.version}</version>
         </dependency>
 
         <!--security-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-security</artifactId>
-            <version>${spring-cloud.version}</version>
         </dependency>
 
     </dependencies>
