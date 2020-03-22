@@ -23,7 +23,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.test.skip>true</maven.test.skip>
         <spring.version>5.2.4.RELEASE</spring.version>
-        <spring-cloud.version>2.1.4.RELEASE</spring-cloud.version>
+        <spring-cloud.version>2.2.1.RELEASE</spring-cloud.version>
         <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
         <spring-cloud-dependencies.version>Greenwich.RELEASE</spring-cloud-dependencies.version>
         <spring-platform.version>Cairo-SR7</spring-platform.version>
@@ -264,6 +264,12 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-config</artifactId>
+                <version>${spring-cloud.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-gateway-core</artifactId>
                 <version>${spring-cloud.version}</version>
             </dependency>
 
