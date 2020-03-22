@@ -10,7 +10,7 @@
 - 对于不需要鉴权的接口，只需要加上一个注解就可以访问了
 - RBAC 权限控制到URL级，系统启动自动同步数据库
 - 新增oauth2认证日志
-- 持续更新中...	敬（点）请（个）关（star）注（吧）
+- 持续更新中...
 
 #### 使用技术
 
@@ -35,7 +35,7 @@
 
     启动前先确认 redis 和 rabbit mq 是否启动
     
-    1、yyok-center
+    1、yyok-Center
     2、yyok-Config
     3、yyok-Auth
     4、yyok-Gateway
