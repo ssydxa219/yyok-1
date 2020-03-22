@@ -16,7 +16,8 @@
 
 |  技术   |   版本   |
 | ---- | ---- |
-|   spring-boot   |   2.1.3.RELEASE   |
+|   spring-platform   |   5.2.4.RELEASE   |
+|   spring-boot   |   2.2.5.RELEASE   |
 |   spring-cloud   |   Greenwich.RELEASE   |
 |   spring-security-oauth2   |   2.3.5.RELEASE   |
 |   mybatis-plus   |   3.1.0   |
@@ -34,7 +35,7 @@
 
     启动前先确认 redis 和 rabbit mq 是否启动
     
-    1、yyok-Eureka
+    1、yyok-center
     2、yyok-Config
     3、yyok-Auth
     4、yyok-Gateway
