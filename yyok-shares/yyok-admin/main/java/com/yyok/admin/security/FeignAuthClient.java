@@ -1,7 +1,7 @@
 package com.yyok.admin.security;
 
 import com.yyok.admin.model.SysUser;
-import com.yyok.common.vo.HttpResponse;
+import com.yyok.common.vars.HttpResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

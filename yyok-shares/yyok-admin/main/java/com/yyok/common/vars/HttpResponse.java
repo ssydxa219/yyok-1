@@ -1,4 +1,4 @@
-package com.yyok.common.vo;
+package com.yyok.common.vars;
 
 import com.yyok.common.constants.HttpConstant;
 import lombok.Data;

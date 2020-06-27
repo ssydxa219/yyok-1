@@ -5,7 +5,7 @@ import com.yyok.admin.dto.UserGroupDto;
 import com.yyok.admin.mapper.SysUserGroupPkMapper;
 import com.yyok.admin.mapper.SysUserMapper;
 import com.yyok.admin.model.SysUserGroupPk;
-import com.yyok.common.vo.ResponsePage;
+import com.yyok.common.vars.ResponsePage;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

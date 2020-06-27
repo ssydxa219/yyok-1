@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.yyok.admin.dto.SysResourceQueryDto;
 import com.yyok.admin.mapper.SysResourceMapper;
 import com.yyok.admin.model.SysResource;
-import com.yyok.common.vo.ResponsePage;
+import com.yyok.common.vars.ResponsePage;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

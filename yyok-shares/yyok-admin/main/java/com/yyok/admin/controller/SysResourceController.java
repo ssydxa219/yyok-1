@@ -5,7 +5,7 @@ import com.yyok.admin.model.SysResource;
 import com.yyok.admin.security.ResourcesMapping;
 import com.yyok.admin.service.SysResourceService;
 import com.yyok.common.constants.SysConstant;
-import com.yyok.common.vo.HttpResponse;
+import com.yyok.common.vars.HttpResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

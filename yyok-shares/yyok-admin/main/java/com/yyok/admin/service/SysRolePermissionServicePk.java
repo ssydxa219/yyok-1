@@ -5,7 +5,7 @@ import com.yyok.admin.dto.RolePermissionDto;
 import com.yyok.admin.mapper.SysPermissionMapper;
 import com.yyok.admin.mapper.SysRolePermissionPkMapper;
 import com.yyok.admin.model.SysRolePermissionPk;
-import com.yyok.common.vo.ResponsePage;
+import com.yyok.common.vars.ResponsePage;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

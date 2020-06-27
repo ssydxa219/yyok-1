@@ -1,9 +1,9 @@
-package com.yyok.common.dto;
+package com.yyok.common.vars;
 
 import lombok.Data;
 
 @Data
-public class RequestDto {
+public class RequestParam {
 
     private int size = 10;
     private int page = 1;

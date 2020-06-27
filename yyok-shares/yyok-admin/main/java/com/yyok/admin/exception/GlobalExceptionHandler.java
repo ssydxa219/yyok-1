@@ -1,6 +1,6 @@
 package com.yyok.admin.exception;
 
-import com.yyok.common.vo.HttpResponse;
+import com.yyok.common.vars.HttpResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;

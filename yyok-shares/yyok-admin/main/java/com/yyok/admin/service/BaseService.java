@@ -2,8 +2,8 @@ package com.yyok.admin.service;
 
 import com.github.pagehelper.PageHelper;
 import com.yyok.admin.util.EntityUtils;
-import com.yyok.common.dto.RequestDto;
-import com.yyok.common.vo.ResponsePage;
+import com.yyok.common.vo.RequestDto;
+import com.yyok.common.vars.ResponsePage;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.common.Mapper;
