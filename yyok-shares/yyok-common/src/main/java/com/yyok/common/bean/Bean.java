@@ -1,6 +1,6 @@
 package com.yyok.common.bean;
 
-import com.yyok.common.constants.constants.CommonConstants;
+import com.yyok.common.constants.CommonConstants;
 import lombok.*;
 import lombok.experimental.Accessors;
 

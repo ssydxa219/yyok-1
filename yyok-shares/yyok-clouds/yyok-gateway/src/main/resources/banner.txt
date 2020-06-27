@@ -4,6 +4,6 @@
              \\/  |  |  | | | | | || (_| |  ) ) ) )
               '   |  |  |_| |_|_| |_\__, | / / / /
              =====|==|==============|===/=/_/_/_/
-             :: yyok-center ::       (v 1.0.0.RELEASE)
+             :: yyok-gateway ::       (v 1.0.0.RELEASE)
                       www.yyokay.com
                   YYOKAY Microservice Architecture

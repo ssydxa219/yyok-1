@@ -1,7 +1,6 @@
 package com.yyok.gecco;
 
 import com.geccocrawler.gecco.GeccoEngine;
-import com.yyok.App;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -29,7 +28,7 @@ public class YYOKGeccoBootstrap {
     }
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(YYOKGeccoBootstrap.class, args);
     }
 
 }

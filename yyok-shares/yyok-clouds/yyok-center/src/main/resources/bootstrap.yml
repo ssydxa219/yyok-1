@@ -1,6 +1,6 @@
 logging:
   level:
-    com.yyok: DEBUG
+    com.yyok: ERROR
 eureka:
   instance:
     hostname: localhost

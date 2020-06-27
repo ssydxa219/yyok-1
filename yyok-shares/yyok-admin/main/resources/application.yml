@@ -1,0 +1,11 @@
+server:
+  port: 8764 #启动端口
+spring:
+  name: yyok-admin
+  devtools:
+    add-properties: true
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/yyok-admin-v2?useUnicode=true&characterEncoding=utf-8&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+    driverClassName: com.mysql.jdbc.Driver

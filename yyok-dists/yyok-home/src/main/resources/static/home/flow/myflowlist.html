@@ -1,0 +1,269 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta http-equiv="Access-Control-Allow-Methods" content="GET,POST">
+    <meta http-equiv="Access-Control-Allow-Headers" content="x-requested-with,content-type">
+    <link type="text/css"
+          href="../../assets/flow/lib/jquery-ui-1.8.4.custom/css/smoothness/jquery-ui-1.8.4.custom.css"
+          rel="stylesheet" />
+    <script type="text/javascript" src="../../assets/flow/lib/raphael-min.js"></script>
+    <script type="text/javascript"
+            src="../../assets/flow/lib/jquery-ui-1.8.4.custom/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="../../assets/flow/lib/jquery-ui-1.8.4.custom/js/jquery-ui-1.8.4.custom.min.js"></script>
+    <script type="text/javascript" src="../../assets/flow/myflow.js"></script>
+    <script type="text/javascript" src="../../assets/flow/myflow.jpdl4.js"></script>
+    <script type="text/javascript" src="../../assets/flow/myflow.editors.js"></script>
+    <script type="text/javascript">
+
+        //show flow
+        function slects(pname){
+
+            $('#myflow').empty();
+            var srcval=$("#myflowlist").attr("srcval").replace("\"","").replace("\"","");
+            var obj = eval('('+srcval+')');
+            var pnames=obj.props.props.name.value
+            var pkeys=obj.props.props.key.value
+            var pdescs=obj.props.props.desc.value
+            $("#pname input").attr("value",pnames)
+            $("#pkey input").attr("value",pkeys)
+            $("#pdesc input").attr("value",pdescs)
+
+            if(pnames==pname){
+
+            }else{
+                $('#myflow').myflow({
+                    basePath: "",
+                    restore: obj,
+                });
+            }
+
+        }
+
+        $(function () {
+            $('#myflow').myflow({
+                basePath: "",
+                restore: eval(""),
+                tools: {
+                    save: {
+                        onclick: function (data) {
+                            $("#myflowlist").attr("srcval",data);
+                        }
+                    }
+                }
+            });
+
+            //show flowlist
+            $("#lists").empty();
+           // $("#lists").empty().append("<li>请新建</li>");
+
+            $("#myflow_reset").click(function () {
+                $('#myflow').empty();
+                $("#pname input").attr("value","")
+                $("#pkey input").attr("value","")
+                $("#pdesc input").attr("value","")
+                $('#myflow').myflow({
+                    basePath: "",
+                    restore: eval(""),
+                });
+            });
+
+            //show svg
+
+            //save  update
+            $("#myflow_save").dblclick(function () {
+                var u="http://172.22.61.77:6733/flow/save";
+                var emptyval= "\"{states:{},paths:{},props:{props:{name:{value:'新建流程'},key:{value:''},desc:{value:''}}}}\"";
+                var currval= $("#myflowlist").attr("srcval");
+
+                if(emptyval==currval){
+                   // alert("=====请新增流程=====")
+                }else{
+                    currval= currval.replace("\"","").replace("\"","");
+                    //alert(currval)
+                    var obj = eval('('+currval+')');
+                    var pname=obj.props.props.name.value
+                    var pkey=obj.props.props.key.value
+                    var pdesc=obj.props.props.desc.value
+                    pname = pname.replace("\"","\\\"");
+                    var data={"pname":pname,"flow":currval,"pkey":pkey,"pdesc":pdesc};
+                    $("#lists").append("<li onclick=slects('"+pname+"')>"+pname+"</li>");
+                    /*$.ajax({
+                        url: u,
+                        type: "post",
+                        dataType: "json", //指定服务器返回的数据类型
+                        success: function (data) {
+                            console.log(data);
+                        }
+                    });*/
+
+
+                }
+            })
+
+        });
+    </script>
+    <style type="text/css">
+        body {
+            margin: 0;
+            pading: 0;
+            text-align: left;
+            font-family: Arial, sans-serif, Helvetica, Tahoma;
+            font-size: 12px;
+            line-height: 1.5;
+            color: black;
+            background-image: url(../../assets/flow/img/bg.png);
+        }
+
+        .node {
+            width: 80px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid #fff;
+        }
+
+        .mover {
+            border: 1px solid #ddd;
+            background-color: #ddd;
+        }
+
+        .selected {
+            background-color: #ddd;
+        }
+
+        .state {
+        }
+
+        #myflow_props table {
+        }
+
+        #myflow_props th {
+            letter-spacing: 2px;
+            text-align: left;
+            padding: 6px;
+            background: #ddd;
+        }
+
+        #myflow_props td {
+            background: #fff;
+            padding: 6px;
+        }
+
+        #pointer {
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        #path {
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        #task {
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        #state {
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        #myflowlist{
+            position: absolute;
+            top: 3px;
+            right: 1px;
+            background-color: #fff;
+            background-image: url(../../assets/flow/img/bg.png);
+            width: 200px;
+            height: 270px;
+            padding: 3px;
+            border-left:2px solid #2b542c;
+        }
+
+        #myflowlist ul li{
+            font-size: 13px;
+            line-height: 30px;
+        }
+
+    </style>
+</head>
+<body>
+<div style="width: 100%">
+    <div id="myflow_tools"
+         style="position: absolute; top: 10px; left: 10px; background-color: #fff; width: 80px; cursor: default; padding: 3px;"
+         class="ui-widget-content">
+        <div id="myflow_tools_handle" style="text-align: center;"
+             class="ui-widget-header">工具集</div>
+        <div class="node" id="myflow_reset"><img src="../../assets/flow/img/16/reset_active.png" />&nbsp;&nbsp;新建</div>
+
+        <div class="node" id="myflow_save"><img src="../../assets/flow/img/save.gif" />&nbsp;&nbsp;保存</div>
+        <div>
+            <hr />
+        </div>
+        <div class="node selectable" id="pointer">
+            <img src="../../assets/flow/img/select16.gif" />&nbsp;&nbsp;选择
+        </div>
+        <div class="node selectable" id="path">
+            <img src="../../assets/flow/img/16/flow_sequence.png" />&nbsp;&nbsp;转换
+        </div>
+        <div>
+            <hr />
+        </div>
+        <div class="node state" id="start" type="start">
+            <img src="../../assets/flow/img/16/start_event_empty.png" />&nbsp;&nbsp;开始
+        </div>
+        <div class="node state" id="state" type="state">
+            <img src="../../assets/flow/img/16/task_empty.png" />&nbsp;&nbsp;状态
+        </div>
+        <div class="node state" id="task" type="task">
+            <img src="../../assets/flow/img/16/task_empty.png" />&nbsp;&nbsp;任务
+        </div>
+        <div class="node state" id="lock-timer" type="lock-timer">
+            <img src="../../assets/flow/img/16/timer.gif" />&nbsp;&nbsp;调度
+        </div>
+        <div class="node state" id="fork" type="fork">
+            <img src="../../assets/flow/img/16/gateway_parallel.png" />&nbsp;&nbsp;分支
+        </div>
+        <div class="node state" id="join" type="join">
+            <img src="../../assets/flow/img/16/gateway_parallel.png" />&nbsp;&nbsp;合并
+        </div>
+        <div class="node state" id="end" type="end">
+            <img src="../../assets/flow/img/16/end_event_terminate.png" />&nbsp;&nbsp;结束
+        </div>
+        <div class="node state" id="end-cancel" type="end-cancel">
+            <img src="../../assets/flow/img/16/end_event_cancel.png" />&nbsp;&nbsp;取消
+        </div>
+        <div class="node state" id="end-error" type="end-error">
+            <img src="../../assets/flow/img/16/end_event_error.png" />&nbsp;&nbsp;错误
+        </div>
+    </div>
+    <div id="myflow_props"
+         style="position: absolute; top: 30px; right: 100px; background-color: #fff; width: 220px;  left: 1061px"
+         class="ui-widget-content">
+        <div id="myflow_props_handle" class="ui-widget-header">属性</div>
+        <table border="1" width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>执行</td>
+            </tr>
+            <tr>
+                <td>CRON</td>
+            </tr>
+        </table>
+        <div>&nbsp;</div>
+    </div>
+    <div id="myflow"></div>
+    <div id="myflowlist">
+        <ul id="lists">
+
+        </ul>
+        <hr style="height:1px;border:none;border-top:1px double red;" >
+        <b style="Float: right;">模板</b>
+        <ul>
+            <li>myflow-8</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

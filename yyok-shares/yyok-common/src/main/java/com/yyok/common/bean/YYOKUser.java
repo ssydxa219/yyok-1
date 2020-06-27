@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,7 +15,7 @@ import java.util.List;
  * 用户表
  */
 @Data
-public class YYOKUser implements Serializable {
+public class YYOKUser {
 
 	private static final long serialVersionUID = 1L;
 

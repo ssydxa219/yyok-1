@@ -15,6 +15,10 @@
         <module>yyok-crms</module>
         <module>yyok-spiders</module>
         <module>yyok-yanglaos</module>
+        <module>yyok-metadatas</module>
+        <module>yyok-docs</module>
+        <module>yyok-wms</module>
+        <module>yyok-iots</module>
     </modules>
 
 </project>

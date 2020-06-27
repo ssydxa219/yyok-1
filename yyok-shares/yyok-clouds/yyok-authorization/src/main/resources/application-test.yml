@@ -1,0 +1,24 @@
+spring:
+  name: yyok-authorization
+  webflux:
+    static-path-pattern:  /resources/static/**
+  security:
+    oauth2:
+      user:
+        name: yyok
+        password: yyok
+      client:
+        client-id: yyok-gateway
+        client-secret: yyok-gateway
+        scope: read, write
+        auto-approve-scopes: .*
+      authorization:
+        check-token-access: permitAll()
+  devtools:
+    add-properties: true
+
+management:
+  endpoint:
+    health:
+      enabled: true
+

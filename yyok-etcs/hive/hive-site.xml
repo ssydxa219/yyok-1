@@ -239,7 +239,7 @@
     </property>
     <property>
         <name>hive.exec.reducers.bytes.per.reducer</name>
-        <value>256000000</value>
+        <value>256000</value>
         <description>size per reducer.The default is 256Mb, i.e if the input size is 1G, it will use 4 reducers.
         </description>
     </property>
@@ -337,7 +337,7 @@
     </property>
     <property>
         <name>hive.exec.dynamic.partition.mode</name>
-        <value>strict</value>
+        <value>nonstrict</value>
         <description>
             In strict mode, the user must specify at least one static partition
             in case the user accidentally overwrites all partitions.
@@ -629,11 +629,11 @@
     </property>
     <property>
         <name>javax.jdo.option.ConnectionURL</name>
-        <value>jdbc:mysql://10.10.5.136:3306/hive?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=UTF-8</value>
+        <value>jdbc:mysql://10.13.2.26:3306/hive?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false</value>
         <description>
             JDBC connect string for a JDBC metastore.
             To use SSL to encrypt/authenticate the connection, provide database-specific SSL flag in the connection URL.
-            For example, jdbc:postgresql://myhost/db?ssl=true for postgres database.
+            For example, jdbc:postgresql://myhost/db?ssl=true &amp; for postgres database.
         </description>
     </property>
     <property>
@@ -1218,6 +1218,15 @@
         <name>javax.jdo.option.ConnectionUserName</name>
         <value>root</value>
         <description>Username to use against metastore database</description>
+    </property>
+    <property>
+        <name>datanucleus.autoCreateSchema </name>
+        <value>false</value>
+        <description>creates necessary schema on a startup if one doesn't exist. set this to false, after creating it once</description>
+    </property>
+    <property>
+        <name>datanucleus.fixedDatastore</name>
+        <value>true</value>
     </property>
     <property>
         <name>hive.metastore.end.function.listeners</name>
@@ -3307,7 +3316,7 @@
     </property>
     <property>
         <name>hive.support.concurrency</name>
-        <value>false</value>
+        <value>true</value>
         <description>
             Whether Hive supports concurrency control or not.
             A ZooKeeper instance must be up and running when using zookeeper Hive lock manager
@@ -3365,7 +3374,7 @@
     </property>
     <property>
         <name>hive.zookeeper.quorum</name>
-        <value/>
+        <value>ddac:2181,ddbc:2181,ddcc:2181</value>
         <description>
             List of ZooKeeper servers to talk to. This is needed for:
             1. Read/write locks - when hive.lock.manager is set to
@@ -3533,7 +3542,7 @@
     </property>
     <property>
         <name>hive.compactor.initiator.on</name>
-        <value>false</value>
+        <value>true</value>
         <description>
             Whether to run the initiator and cleaner threads on this metastore instance or not.
             Set this to true on one instance of the Thrift metastore service as part of turning
@@ -3543,7 +3552,7 @@
     </property>
     <property>
         <name>hive.compactor.worker.threads</name>
-        <value>0</value>
+        <value>1</value>
         <description>
             How many compactor worker threads to run on this metastore instance. Set this to a
             positive number on one or more instances of the Thrift metastore service as part of
@@ -4424,7 +4433,7 @@
     </property>
     <property>
         <name>hive.server2.support.dynamic.service.discovery</name>
-        <value>false</value>
+        <value>true</value>
         <description>Whether HiveServer2 supports dynamic service discovery for its clients. To support this, each
             instance of HiveServer2 currently uses ZooKeeper to register itself, when it is brought up. JDBC/ODBC
             clients should use the ZooKeeper ensemble: hive.zookeeper.quorum in their connection string.
@@ -7231,6 +7240,31 @@
         <description>Comma separated list of configuration options which should not be read by normal user like
             passwords
         </description>
+    </property>
+
+    <property>
+        <name>spark.home</name>
+        <value>/ddhome/bin/spark</value>
+    </property>
+    <property>
+        <name>spark.master</name>
+        <value>spark://ddac:7077</value>
+    </property>
+    <property>
+        <name>spark.submit.deployMode</name>
+        <value>client</value>
+    </property>
+    <property>
+        <name>spark.eventLog.enabled</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>spark.eventLog.enabled</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>spark.eventLog.dir</name>
+        <value>hdfs://hxdsj/dbc/var/spark-log</value>
     </property>
     <property>
         <name>hive.conf.internal.variable.list</name>

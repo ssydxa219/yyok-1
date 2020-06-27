@@ -1,4 +1,4 @@
-package com.yyok.common.constants.constants;
+package com.yyok.common.constants;
 
 /**
  * 公用常量类
@@ -36,6 +36,8 @@ public interface CommonConstants {
      * redis 认证用户信息
      */
     String AUTH_USER = "auth_user:";
+
+    String USER_INFO = "auth_user:";
 
     /**
      * 默认限流等级

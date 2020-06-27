@@ -1,0 +1,1 @@
+yyok-center-->yyok-config-->yyok-authorization-->yyok-gateway-->yyok-admin

@@ -59,6 +59,7 @@
         <value>*</value>
         <description>Defines the Unix user, hdfs, that will run the HttpFS server as a proxyuser.</description>
     </property>
+
     <property>
         <name>hadoop.proxyuser.hdfs.groups</name>
         <value>*</value>
@@ -127,6 +128,14 @@
     </property>
     <property>
         <name>hadoop.proxyuser.hbase.groups</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.oozie.hosts</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.oozie.groups</name>
         <value>*</value>
     </property>
     <property>

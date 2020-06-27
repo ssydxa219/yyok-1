@@ -1,0 +1,333 @@
+<?xml version="1.0"?>
+<!--
+注意点进emr的yarn里时,配置要选fair-scheduler.修改完点保存,再刷新.
+
+cat /etc/ecm/hadoop-conf/fair-scheduler.xml
+
+#新的xml, 不带root限制: 放emr的yarn-配置-fair-scheduler
+-->
+<allocations>
+
+    <aclSubmitApps>*</aclSubmitApps>
+
+    <weight>2</weight>
+
+    <minResources>10000 mb, 10vcores</minResources>
+
+    <maxChildResources>34000 mb,24 vcores</maxChildResources>
+
+    <maxRunningApps>50</maxRunningApps>
+
+    <maxAMShare>1</maxAMShare>
+
+    <maxResources>400000 mb, 200vcores</maxResources> #限制队列最大使用资源
+
+    <aclAdministerApps>*</aclAdministerApps>
+
+    <schedulingPolicy>fair</schedulingPolicy>
+
+    <queue name="default">
+
+        <aclSubmitApps>*</aclSubmitApps>
+
+        <minResources>10000 mb, 10vcores</minResources>
+
+        <aclAdministerApps>*</aclAdministerApps>
+
+        <weight>1</weight>
+
+        <maxRunningApps>10</maxRunningApps>
+
+        <maxAMShare>0.5</maxAMShare>
+
+        <maxResources>200000 mb, 100vcores</maxResources>
+
+    </queue>
+
+    <queue name="collects">
+
+        <schedulingPolicy>fair</schedulingPolicy>
+
+        <aclSubmitApps>*</aclSubmitApps>
+
+        <aclAdministerApps>*</aclAdministerApps>
+
+        <weight>8</weight>
+
+        <maxAMShare>0.8</maxAMShare>
+
+        <minResources>50 mb, 2vcores</minResources>
+
+        <maxResources>400000 mb, 200vcores</maxResources>
+
+        <maxRunningApps>50</maxRunningApps>
+
+    </queue>
+
+    <queue name="data_bi">
+
+        <schedulingPolicy>fair</schedulingPolicy>
+
+        <aclSubmitApps>*</aclSubmitApps>
+
+        <aclAdministerApps>*</aclAdministerApps>
+
+        <weight>4</weight>
+
+        <minResources>100 mb, 1vcores</minResources>
+
+        <maxResources>30000 mb, 50vcores</maxResources>
+
+        <maxRunningApps>5</maxRunningApps>
+
+    </queue>
+
+    <queue name="opay_collects">
+
+        <weight>20</weight>
+
+        <minResources>10 mb, 1vcores</minResources>
+
+        <maxResources>400000 mb, 200vcores</maxResources>
+
+        <maxRunningApps>20</maxRunningApps>
+
+        <maxAMShare>0.5</maxAMShare>
+
+        <schedulingPolicy>fair</schedulingPolicy>
+
+        <aclSubmitApps>*</aclSubmitApps>
+
+        <aclAdministerApps>*</aclAdministerApps>
+
+    </queue>
+
+    <queue name="opos_collects">
+
+        <weight>5</weight>
+
+        <minResources>10 mb, 1vcores</minResources>
+
+        <maxResources>80000 mb, 50vcores</maxResources>
+
+        <maxRunningApps>10</maxRunningApps>
+
+    </queue>
+
+    <queue name="users" type="parent">
+
+        <weight>5</weight>
+
+        <minResources>10 mb, 1vcores</minResources>
+
+        <maxResources>10000 mb, 150vcores</maxResources>
+
+        <maxRunningApps>30</maxRunningApps>
+
+        <schedulingPolicy>fair</schedulingPolicy>
+
+        <aclSubmitApps>*</aclSubmitApps>
+
+        <aclAdministerApps>*</aclAdministerApps>
+
+    </queue>
+
+    <queue name="airflow">
+
+        <schedulingPolicy>fair</schedulingPolicy>
+
+        <aclSubmitApps>*</aclSubmitApps>
+
+        <aclAdministerApps>*</aclAdministerApps>
+
+        <weight>8</weight>
+
+        <minResources>10 mb, 2vcores</minResources>
+
+        <maxResources>200000 mb, 150vcores</maxResources>
+
+        <maxRunningApps>30</maxRunningApps>
+
+    </queue>
+
+    <defaultQueueSchedulingPolicy>fair</defaultQueueSchedulingPolicy>
+
+    <userMaxAppsDefault>50</userMaxAppsDefault>
+
+    <queueMaxAppsDefault>50</queueMaxAppsDefault>
+
+    <queueMaxAMShareDefault>0.5</queueMaxAMShareDefault>
+
+    <defaultFairSharePreemptionThreshold>0.5</defaultFairSharePreemptionThreshold>
+
+    <queueMaxResourcesDefault>34000 mb,24vcores</queueMaxResourcesDefault>
+
+    <defaultFairSharePreemptionTimeout>9223372036854775807</defaultFairSharePreemptionTimeout>
+
+    <defaultMinSharePreemptionTimeout>9223372036854775807</defaultMinSharePreemptionTimeout>
+
+</allocations>
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<allocations>
+<queue name="root">
+    <queue name="default">
+        <aclSubmitApps>*</aclSubmitApps>
+        <minResources>10000 mb, 10vcores</minResources>
+        <aclAdministerApps>*</aclAdministerApps>
+        <weight>1</weight>
+        <maxRunningApps>10</maxRunningApps>
+        <maxAMShare>0.5</maxAMShare>
+        <maxResources>200000 mb, 80vcores</maxResources>
+    </queue>
+    <queue name="hdfs">
+        <schedulingPolicy>fair</schedulingPolicy>
+        <aclSubmitApps>*</aclSubmitApps>
+        <aclAdministerApps>*</aclAdministerApps>
+        <weight>8</weight>
+        <maxAMShare>0.5</maxAMShare>
+        <minResources>10000 mb, 10vcores</minResources>
+        <maxResources>190000 mb, 60vcores</maxResources>
+        <maxRunningApps>50</maxRunningApps>
+    </queue>
+    <queue name="sparkonyarn">
+        <schedulingPolicy>fair</schedulingPolicy>
+        <aclSubmitApps>*</aclSubmitApps>
+        <aclAdministerApps>*</aclAdministerApps>
+        <weight>6</weight>
+        <maxAMShare>0.8</maxAMShare>
+        <minResources>10000 mb, 10vcores</minResources>
+        <maxResources>200000 mb, 50vcores</maxResources>
+        <maxRunningApps>30</maxRunningApps>
+    </queue>
+    <queue name="dailys">
+        <schedulingPolicy>fair</schedulingPolicy>
+        <aclSubmitApps>*</aclSubmitApps>
+        <aclAdministerApps>*</aclAdministerApps>
+        <weight>6</weight>
+        <minResources>10000 mb, 10vcores</minResources>
+        <maxResources>200000 mb, 80vcores</maxResources>
+        <maxRunningApps>20</maxRunningApps>
+    </queue>
+    <queue name="weeks">
+        <weight>8</weight>
+        <minResources>10000 mb, 10vcores</minResources>
+        <maxResources>130000 mb, 45vcores</maxResources>
+        <maxRunningApps>20</maxRunningApps>
+        <maxAMShare>0.5</maxAMShare>
+        <schedulingPolicy>fair</schedulingPolicy>
+        <aclSubmitApps>*</aclSubmitApps>
+        <aclAdministerApps>*</aclAdministerApps>
+    </queue>
+    <queue name="months">
+        <weight>8</weight>
+        <minResources>10000 mb, 10vcores</minResources>
+        <maxResources>130000 mb, 45vcores</maxResources>
+        <maxRunningApps>20</maxRunningApps>
+    </queue>
+    <queue name="flinkonyarn">
+        <schedulingPolicy>fair</schedulingPolicy>
+        <aclSubmitApps>*</aclSubmitApps>
+        <aclAdministerApps>*</aclAdministerApps>
+        <weight>8</weight>
+        <minResources>100000 mb, 50vcores</minResources>
+        <maxResources>500000 mb, 150vcores</maxResources>
+        <maxRunningApps>50</maxRunningApps>
+        <maxAMShare>0.5</maxAMShare>
+        <schedulingPolicy>fair</schedulingPolicy>
+    </queue>
+</queue>
+<defaultQueueSchedulingPolicy>fair</defaultQueueSchedulingPolicy>
+<userMaxAppsDefault>50</userMaxAppsDefault>
+<queueMaxAppsDefault>50</queueMaxAppsDefault>
+<queueMaxAMShareDefault>0.5</queueMaxAMShareDefault>
+<defaultFairSharePreemptionThreshold>0.5</defaultFairSharePreemptionThreshold>
+<defaultFairSharePreemptionTimeout>9223372036854775807</defaultFairSharePreemptionTimeout>
+<defaultMinSharePreemptionTimeout>9223372036854775807</defaultMinSharePreemptionTimeout>
+</allocations>
+
+
+echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<allocations>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<queue name=\"root\">" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<queue name=\"default\">" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<aclSubmitApps>*</aclSubmitApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<minResources>10000 mb, 10vcores</minResources>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<aclAdministerApps>*</aclAdministerApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<weight>1</weight>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxRunningApps>10</maxRunningApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxAMShare>0.5</maxAMShare>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxResources>200000 mb, 80vcores</maxResources>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "</queue>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<queue name=\"spark_dev\">" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<schedulingPolicy>fair</schedulingPolicy>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<aclSubmitApps>*</aclSubmitApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<aclAdministerApps>*</aclAdministerApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<weight>6</weight>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxAMShare>0.8</maxAMShare>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<minResources>10000 mb, 10vcores</minResources>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxResources>200000 mb, 50vcores</maxResources>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxRunningApps>30</maxRunningApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "</queue>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<queue name=\"spark_prod\">" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<schedulingPolicy>fair</schedulingPolicy>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<aclSubmitApps>*</aclSubmitApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<aclAdministerApps>*</aclAdministerApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<weight>6</weight>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<minResources>10000 mb, 10vcores</minResources>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxResources>200000 mb, 80vcores</maxResources>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxRunningApps>20</maxRunningApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "</queue>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<queue name=\"flink_dev\">" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<schedulingPolicy>fair</schedulingPolicy>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<aclSubmitApps>*</aclSubmitApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<aclAdministerApps>*</aclAdministerApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<weight>8</weight>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxAMShare>0.5</maxAMShare>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<minResources>10000 mb, 10vcores</minResources>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxResources>190000 mb, 60vcores</maxResources>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxRunningApps>50</maxRunningApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "</queue>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<queue name=\"flink_prod\">" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<schedulingPolicy>fair</schedulingPolicy>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<aclSubmitApps>*</aclSubmitApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<aclAdministerApps>*</aclAdministerApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<weight>8</weight>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<minResources>100000 mb, 50vcores</minResources>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxResources>500000 mb, 150vcores</maxResources>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxRunningApps>50</maxRunningApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxAMShare>0.5</maxAMShare>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<schedulingPolicy>fair</schedulingPolicy>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "</queue>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<queue name=\"test\">" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<weight>8</weight>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<minResources>10000 mb, 10vcores</minResources>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxResources>130000 mb, 45vcores</maxResources>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxRunningApps>20</maxRunningApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxAMShare>0.5</maxAMShare>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<schedulingPolicy>fair</schedulingPolicy>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<aclSubmitApps>*</aclSubmitApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<aclAdministerApps>*</aclAdministerApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "</queue>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<queue name=\"months\">" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<weight>8</weight>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<minResources>10000 mb, 10vcores</minResources>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxResources>130000 mb, 45vcores</maxResources>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<maxRunningApps>20</maxRunningApps>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "</queue>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "</queue>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<defaultQueueSchedulingPolicy>fair</defaultQueueSchedulingPolicy>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<userMaxAppsDefault>50</userMaxAppsDefault>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<queueMaxAppsDefault>50</queueMaxAppsDefault>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<queueMaxAMShareDefault>0.5</queueMaxAMShareDefault>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<defaultFairSharePreemptionThreshold>0.5</defaultFairSharePreemptionThreshold>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<defaultFairSharePreemptionTimeout>9223372036854775807</defaultFairSharePreemptionTimeout>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "<defaultMinSharePreemptionTimeout>9223372036854775807</defaultMinSharePreemptionTimeout>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml
+echo "</allocations>" >>$hadoop_dir/etc/hadoop/fair-scheduler.xml

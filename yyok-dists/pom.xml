@@ -14,6 +14,8 @@
         <module>yyok-oa</module>
         <module>yyok-crm</module>
         <module>yyok-yanglao</module>
+        <module>yyok-home</module>
+        <module>yyok-iot</module>
     </modules>
 
 </project>

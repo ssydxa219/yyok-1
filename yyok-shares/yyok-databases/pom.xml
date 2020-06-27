@@ -14,6 +14,8 @@
     <name>yyok-databases</name>
     <modules>
         <module>yyok-mysql</module>
+        <module>yyok-mybatis</module>
+        <module>yyok-redis</module>
     </modules>
     <packaging>pom</packaging>
     <!-- FIXME change it to the project's website -->

@@ -1,0 +1,11 @@
+logging:
+  level:
+    com.yyok: debug
+    com.mysql: warn
+    org.hswebframework: debug
+    org.springframework.transaction: debug
+    #    org.springframework.data.r2dbc.connectionfactory: debug
+    io.micrometer: warn
+    system: debug
+    org.springframework: warn
+    org.elasticsearch: error

@@ -16,11 +16,13 @@
         <module>yyok-linux</module>
         <module>yyok-boot</module>
         <module>yyok-clouds</module>
-        <module>yyok-bigdatas</module>
         <module>yyok-cache</module>
         <module>yyok-databases</module>
         <module>yyok-admin</module>
         <module>yyok-springs</module>
+        <module>yyok-schedules</module>
+       <!-- <module>yyok-bigdatas</module>-->
+        <module>yyok-opencvs</module>
     </modules>
 
 

@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.yyok.mapper.MapperConfiguration,\
+com.yyok.pagehelper.PageHelperAutoConfiguration

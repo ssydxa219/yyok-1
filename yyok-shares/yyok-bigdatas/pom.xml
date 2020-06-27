@@ -13,6 +13,7 @@
     <modules>
         <module>yyok-spark</module>
         <module>yyok-flink</module>
+        <module>yyok-ads</module>
     </modules>
 
 </project>

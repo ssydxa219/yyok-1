@@ -1,0 +1,3 @@
+mybatis:
+  type-aliases-package: com.yyok.admin.model
+  mapper-locations: "classpath*:mapper/*.xml"

@@ -10,34 +10,27 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>yyok-config</artifactId>
-
+    <version>1.0.0</version>
     <name>yyok-config</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
-    <properties>
-        <spring-cloud.version>2.1.4.RELEASE</spring-cloud.version>
-        <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
-    </properties>
-
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-server</artifactId>
+        </dependency>
+
         <!--增加eureka-server的依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter</artifactId>
-            <version>${spring-cloud.version}</version>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-config-server</artifactId>
-                <version>${spring-cloud.version}</version>
-            </dependency>
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-            <version>${spring-cloud.version}</version>
+            <artifactId>spring-cloud-config-server</artifactId>
+            <version>2.1.4.RELEASE</version>
         </dependency>
 
     </dependencies>

@@ -22,8 +22,9 @@
         <spark.version>2.4.5</spark.version>
         <scala.version>2.11.12</scala.version>
         <scala.main.version>2.11</scala.main.version>
-        <hadoop.version>2.9.2</hadoop.version>
-        <hbase.version>1.4.9</hbase.version>
+        <hadoop.version>3.2.1</hadoop.version>
+        <hbase.version>2.2.2</hbase.version>
+        <kafka.version>2.11</kafka.version>
     </properties>
 
     <dependencies>
@@ -60,19 +61,16 @@
             <artifactId>spark-mllib_${scala.main.version}</artifactId>
             <version>${spark.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-client</artifactId>
-            <version>${hbase.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-server</artifactId>
-            <version>${hbase.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-mapreduce-client-core</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-auth</artifactId>
             <version>${hadoop.version}</version>
         </dependency>
 
@@ -88,6 +86,21 @@
             <version>${hadoop.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-hdfs</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>${hbase.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-server</artifactId>
+            <version>${hbase.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-protocol</artifactId>
             <version>${hbase.version}</version>
@@ -97,16 +110,11 @@
             <artifactId>hbase-shaded-client</artifactId>
             <version>${hbase.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-hdfs</artifactId>
-            <version>${hadoop.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>23.6-jre</version>
+            <version>27.0-jre</version>
         </dependency>
 
     </dependencies>
@@ -131,7 +139,7 @@
             <!-- maven 打jar包需要插件 -->
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4</version>
+                <version>3.1.0</version>
                 <configuration>
                     <!-- 设置false后是去掉 MySpark-1.0-SNAPSHOT-jar-with-dependencies.jar 后的 “-jar-with-dependencies” -->
                     <!--<appendAssemblyId>false</appendAssemblyId>-->
@@ -140,11 +148,11 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.bjsxt.scalaspark.core.examples.ExecuteLinuxShell</mainClass>
+                            <mainClass>com.yyok.HelloSpark</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
-                <executions>
+                <!--<executions>
                     <execution>
                         <id>make-assembly</id>
                         <phase>package</phase>
@@ -152,7 +160,7 @@
                             <goal>assembly</goal>
                         </goals>
                     </execution>
-                </executions>
+                </executions>-->
             </plugin>
         </plugins>
     </build>

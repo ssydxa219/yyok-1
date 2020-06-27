@@ -1,0 +1,503 @@
+
+
+show slave status \G;
+
+START SLAVE;
+UNLOCK TABLES;
+CHANGE MASTER TO MASTER_HOST='dda';
+master_host='dda';
+master_user='root';
+master_password='root';
+master_log_file='binlog.000003';
+master_log_pos=194;
+
+
+
+SHOW MASTER STATUS;
+UNLOCK TABLES;
+
+
+FLUSH TABLES WITH READ LOCK;
+
+
+
+安装准备
+1. 在安装MySQL前，须要确认以下的系统软件已经安装在Linux中。
+软件名称
+
+软件描写叙述
+
+gcc-4.4.7
+
+编程语言编译器
+
+gcc-c++-4.4.7
+
+C++语言编译器
+
+cmake-2.6.4-5
+
+跨平台的开源构建系统
+
+ncurses-devel-5.7-3.20090208
+
+控制打印控制台屏幕
+
+2. 创建mysql Linux用户
+# groupadd mysql
+
+# useradd -g mysql mysql
+
+# passwd mysql
+
+3. 准备安装文件夹
+
+创建MySQL安装文件夹，并赋权限给mysql用户：
+
+# mkdir /usr/local/mysql-5.6.19
+
+# chown mysql:mysql /usr/local/mysql-5.6.19
+
+# chmod -R 770 /usr/local/mysql-5.6.19
+
+4. 创建MySQL数据存储文件夹：
+
+# mkdir /data
+
+# mkdir /data/mysql
+
+# chown mysql:mysql /data/mysql
+
+5. 授权MySQL解压源代码文件夹/usr/local/src文件夹的可运行权限给全部用户：
+
+# chmod -R 757 /usr/local/src
+
+安装MySQL
+1. 解压缩安装包：
+
+$ cd /usr/local/src
+
+$ tar -xzvf mysql-5.6.19.tar.gz
+
+2. 配置MySQL编译參数
+
+$ cd /usr/local/src/mysql-5.6.19
+
+$ cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql-5.6.19\
+
+       -DMYSQL_DATADIR=$MYSQL_DATA_PATH\
+
+       -DSYSCONFDIR=/usr/local/mysql-5.6.19/conf\
+
+       -DDEFAULT_CHARSET=utf8\
+
+       -DDEFAULT_COLLATION=utf8_general_ci\
+
+       -DWITH_READLINE=1\
+
+       -DWITH_INNOBASE_STORAGE_ENGINE=1\
+
+-DWITH_ARCHIVE_STORAGE_ENGINE=1 \
+
+-DWITH_BLACKHOLE_STORAGE_ENGINE=1 \
+
+-DWITH_PERFSCHEMA_STORAGE_ENGINE=1
+备注：
+
+-DCMAKE_INSTALL_PREFIX: 配置MySQL的安装文件夹。
+
+-DMYSQL_DATADIR: 配置MySQL的数据文件夹。
+
+-DSYSCONFDIR:  配置MySQL的配置文件文件夹。
+
+-DDEFAULT_CHARSET: 默认字符集。
+
+-DDEFAULT_COLLATION：设定默认语言的排序规则。
+
+-DWITH_READLINE：支持批量导入mysql数据。
+
+-DWITH_INNOBASE_STORAGE_ENGINE：使用INNOBASE存储引擎。
+
+-DWITH_ARCHIVE_STORAGE_ENGINE：常应用于日志记录和聚合分析，不支持索引。
+
+-DWITH_BLACKHOLE_STORAGE_ENGINE：黑洞存储引擎。
+
+-DWITH_PERFSCHEMA_STORAGE_ENGINE：性能模式引擎。
+3. 运行make
+
+$ make
+
+$ make install
+
+4. 改动myql用户的环境变量，添加MYSQL_HOME。并把bin加到PATH：
+
+$ vi ~/.bash_profile
+
+在文件里添加蓝色字体部分：
+
+# User specific environment and startup programs
+
+# MySQL home文件夹
+
+export MYSQL_HOME=/usr/local/mysql-5.6.19
+
+
+
+PATH=$PATH:$HOME/bin:$MYSQL_HOME/bin
+
+
+
+export PATH
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$ source ~/.bash_profile
+
+初始化MySQL
+1. 安装service脚本
+
+# cp /usr/local/mysql-5.6.19/support-files/mysql.server/etc/init.d/mysqld
+
+# chown mysql:mysql/etc/init.d/mysqld
+
+# chmod 700 /etc/init.d/mysqld
+
+2. 创建mysql权限数据库
+
+$ $MYSQL_HOME/scripts/mysql_install_db--basedir=$MYSQL_HOME --datadir=/data/mysql
+
+3. 创建PID文件文件夹
+
+$ mkdir $MYSQL_HOME/var
+
+4. 为master配置my.cnf
+
+my.cnf格式不对，非常easy在启动时错误，最好在原有文件的基础上通过vi工具在linux上改动。
+
+假设文件已经损坏，能够通过默认的模板中拷贝：
+
+$ cp $MYSQL_HOME/support-files/my-default.cnf$MYSQL_HOME/my.cnf
+
+编辑my.cnf
+
+$ vi $MYSQL_HOME/my.cnf
+
+在文件里添加蓝色字体部分：
+
+# For advice on how to change settings please see
+
+# http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html
+
+
+
+[mysqld]
+
+
+
+# Remove leading # and set to the amount of RAM for the most important data
+
+# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+
+innodb_buffer_pool_size = 256M
+
+innodb_flush_log_at_trx_commit=1
+
+
+
+# Remove leading # to turn on a very important data integrity option: logging
+
+# changes to the binary log between backups.
+
+log_bin=master-bin
+
+log_bin_index=master-bin.index
+
+
+
+# These are commonly set, remove the # and set as required.
+
+# basedir = .....
+
+datadir = /data/mysql
+
+port = 3306
+
+# first master server id
+
+server_id = 1
+
+socket = /tmp/mysql.sock
+
+pid-file =  /usr/local/mysql-5.6.19/var/master.pid
+
+
+
+# Remove leading # to set options mainly useful for reporting servers.
+
+# The server defaults are faster for transactions and fast SELECTs.
+
+# Adjust sizes as needed, experiment to find the optimal values.
+
+# join_buffer_size = 128M
+
+# sort_buffer_size = 2M
+
+# read_rnd_buffer_size = 2M
+
+
+
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5. 为slave配置my.cnf
+
+和master的配置文件一样进行改动。但注意文件里的log文件名称、datadir和server_id等内容不同。
+
+编辑my.cnf
+
+$ vi $MYSQL_HOME/my.cnf
+
+在文件里添加蓝色字体部分：
+
+# For advice on how to change settings please see
+
+# http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html
+
+
+
+[mysqld]
+
+
+
+# Remove leading # and set to the amount of RAM for the most important data
+
+# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+
+innodb_buffer_pool_size = 256M
+
+innodb_flush_log_at_trx_commit=1
+
+
+
+# Replication
+
+# relay-log=slave-relay-bin
+
+# relay-log-index=slave-relay-bin.index
+
+
+
+# These are commonly set, remove the # and set as required.
+
+# basedir = .....
+
+datadir = /data/mysql
+
+port = 3306
+
+# first slave server id of master 1
+
+server_id = 101
+
+socket = /tmp/mysql.sock
+
+pid-file =  /usr/local/mysql-5.6.19/var/slave.pid
+
+
+
+# Remove leading # to set options mainly useful for reporting servers.
+
+# The server defaults are faster for transactions and fast SELECTs.
+
+# Adjust sizes as needed, experiment to find the optimal values.
+
+# join_buffer_size = 128M
+
+# sort_buffer_size = 2M
+
+# read_rnd_buffer_size = 2M
+
+
+
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6. 启动MySQL
+启动和停止master和slave都全然一样。
+
+$ service mysqldstart
+
+通过以下命令查看是否启动成功：
+
+$ service mysqldstatus
+
+7. 停止MySQL
+
+$ service mysqld stop
+
+管理MySQL安全性
+默认MySQL的root的用户password为空。为了提高安全性，应该设置root用户一个安全的password。
+
+在server上通过mysql用户打开MySQLclient：
+$ mysql –u root
+
+设置一个安全的password：
+
+mysql> SET PASSWORD FORroot@localhost=PASSWORD('secret');
+
+配置Master和Slave之间的复制
+1. 创建运行复制的MySQL用户
+
+在Master上创建一个复制用户，当中secret为用户的password：
+
+mysql> CREATEUSER repl_user IDENTIFIED BY 'secret';
+
+并赋给复制权限：
+
+mysql>GRANTREPLICATION SLAVE ON *.* TO repl_user;
+
+2. 锁定Master并获取二进制日志位置值
+
+获取读锁：
+
+mysql> FLUSH TABLES WITH READ LOCK;
+
+显示当前二进制文件名称及位置值：
+
+mysql> SHOW MASTER STATUS;
+
+
+3. 通过mysqldump工具获取Master数据快照
+
+在另外一个会话中在Master上运行：
+
+$ mysqldump -u root-p --all-databases --master-data > data_dump.sql
+
+运行后。保存在当前文件夹中。
+4. 释放Master上的读锁
+
+在获取读锁的会话中。运行释放锁命令：
+
+mysql> UNLOCK TABLES;
+5. 导入dump数据到Slave中
+
+通过scp拷贝data_dump.sql到Slave的机器上。
+
+$ scp data_dump.sqlmysql@<ip of slave>:/home/mysql
+
+在Slave上通过以下的命令导入到Slave的MySQL中。
+
+$ mysql –u root -p
+
+mysql> source data_dump.sql;
+6. 配置Master和Slave之间的复制
+
+mysql> CHANGE MASTER TO MASTER_HOST='<ip or hostame of master>',
+
+MASTER_USER='repl_user',
+
+MASTER_PASSWORD='secret',
+
+MASTER_PORT = 3306,
+
+MASTER_LOG_FILE='master-bin.000003',
+
+MASTER_LOG_POS=881;
+
+上面的MASTER_LOG_FILE和MASTER_LOG_POS须要配置6.2中查询到的信息。<ipor hostame of master>是Master的IP或主机名。
+
+启动Slave：
+mysql> START SLAVE;
+
+7. 验证Master和Slave的状态
+
+在Master上运行：
+
+mysql> SHOW MASTER STATUS;
+
+
+在Slave上运行：
+
+mysql> SHOW SLAVE STATUS;
+
+
+上述资料显示，无论是什么错误，Slave_IO_State信息‘Waitigfor master to send event’，说明复制连接配置OK。
+
+

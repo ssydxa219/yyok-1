@@ -1,14 +1,20 @@
 package com.yyok;
 
+import com.yyok.linux.ShellUtil;
+
 import java.util.concurrent.ExecutionException;
 
 public class ShellMain {
 
     static String hosts1[] = {
-    "10.10.5.131 dda root hxpti", "10.10.5.132 ddb root hxpti",
-    "10.10.5.133 ddc root hxpti", "10.10.5.134 ddd root hxpti",
-    "10.10.5.135 dde root hxpti", "10.10.5.136 ddf root hxpti",
-    "10.10.5.137 ddg root hxpti", "10.10.5.138 ddh root hxpti"
+    "10.10.5.131 dda root hxpti",
+    "10.10.5.132 ddb root hxpti",
+    "10.10.5.133 ddc root hxpti",
+    "10.10.5.134 ddd root hxpti",
+    "10.10.5.135 dde root hxpti",
+    "10.10.5.136 ddf root hxpti",
+    "10.10.5.137 ddg root hxpti",
+    "10.10.5.138 ddh root hxpti"
     };
 
     static String hosts[] = {
@@ -21,6 +27,10 @@ public class ShellMain {
     "10.13.2.17 ddca root hxpti",
     "10.13.2.18 ddcb root hxpti",
     "10.13.2.19 ddcc root hxpti",
+    "10.13.2.20 ddda root hxpti",
+    "10.13.2.21 dddb root hxpti",
+    "10.13.2.22 dddc root hxpti",
+    "10.13.2.23 dddd root hxpti",
     "10.13.2.24 ddea root hxpti",
     "10.13.2.25 ddeb root hxpti",
     "10.13.2.26 ddec root hxpti"
@@ -28,12 +38,13 @@ public class ShellMain {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
-    //ShellUtil.execenv(hosts);
+    //ShellUtil.execenv(hosts1);
     //ShellUtil.execmkdir(hosts,"/ddhome");
     //ShellUtil.execchmod(hosts);
     //ShellUtil.execopt(hosts);
-    //ShellUtil.exechostressh(hosts);
-    //ShellUtil.exechostssh(hosts);
+    //ShellUtil.exechostressh(hosts1);
+
+    ShellUtil.exechostssh(hosts);
     //ShellUtil.execyums(hosts);
     //ShellUtil.execscps("dda",hosts,"/ddhome/bin/*", "/ddhome/bin/");
     //ShellUtil.execsdown("10.10.5.131","root","hxpti");
@@ -43,3 +54,16 @@ public class ShellMain {
 
     }
 }
+
+
+
+//10.10.5.131 dda
+//10.10.5.132 ddb
+//10.10.5.133 ddc
+//10.10.5.134 ddd
+//10.10.5.135 dde
+//10.10.5.136 ddf
+//10.10.5.137 ddg
+//10.10.5.138 ddh
+
+

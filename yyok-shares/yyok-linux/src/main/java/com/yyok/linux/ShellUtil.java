@@ -1,7 +1,6 @@
 package com.yyok.linux;
 
 import com.jcraft.jsch.*;
-import com.yyok.linux.Shell;
 import expect4j.Expect4j;
 import expect4j.matches.EofMatch;
 import expect4j.matches.Match;
@@ -366,7 +365,7 @@ public class ShellUtil extends Shell {
             String un = infos[2];
             String pwd = infos[3];
             //exec(ip, un, pwd, 22, "echo \"127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4\" >/etc/hosts");
-            //exec(ip, un, pwd, 22, "echo \"::1         localhost localhost.localdomain localhost6 localhost6.localdomain6\" >>/etc/hosts");
+            //exec(ip, un, pwd, 22, "echo \"::1   authorized_keys      localhost localhost.localdomain localhost6 localhost6.localdomain6\" >>/etc/hosts");
             for (String hosta : hosts) {
                 String infoa[] = hosta.split(" ");
                 String ipa = infoa[0];
@@ -374,14 +373,13 @@ public class ShellUtil extends Shell {
                 String una = infoa[2];
                 String pwda = infoa[3];
                 String execrsapub = exec(ipa, una, pwda, 22, commonrsapub);
-                exec(ip, un, pwd, 22, "echo '" + execrsapub + "'>> /root/.ssh/authorized_keys");
-                exec(ip, un, pwd, 22, "! cat /etc/hosts | grep '"+ ipa + " " + mna + " && echo '" + ipa + " " + mna + "'>> /etc/hosts");
+                exec(ip, un, pwd, 22, "echo '" + execrsapub + "'>> /root/.ssh/authorized_keys && ! cat /etc/hosts | grep '"+ ipa + " " + mna + " && echo '" + ipa + " " + mna + "'>> /etc/hosts && ! cat /etc/ssh/ssh_config | grep \"StrictHostKeyChecking no\"  && echo 'StrictHostKeyChecking no' >> /etc/ssh/ssh_config && exit 0;");
                 //将其中的PermitRootLogin no修改为yes，
                 // PubkeyAuthentication yes修改为no，
                 // AuthorizedKeysFile .ssh/authorized_keys前面加上#屏蔽掉，
                 // PasswordAuthentication no修改为yes就可以了。
                 //StrictHostKeyChecking ask 改成 StrictHostKeyChecking no
-                exec(ip, un, pwd, 22, "! cat /etc/ssh/ssh_config | grep \"StrictHostKeyChecking no\"  && echo 'StrictHostKeyChecking no' >> /etc/ssh/ssh_config");
+                //exec(ip, un, pwd, 22, "! cat /etc/ssh/ssh_config | grep \"StrictHostKeyChecking no\"  && echo 'StrictHostKeyChecking no' >> /etc/ssh/ssh_config");
             }
 
             System.out.println("--------------exechostssh--" + host + "--------------");
