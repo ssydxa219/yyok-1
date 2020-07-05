@@ -6,6 +6,7 @@
 test
 out
 App.java
+dependency-reduced-pom.xml
 
 ### STS ###
 .settings/
