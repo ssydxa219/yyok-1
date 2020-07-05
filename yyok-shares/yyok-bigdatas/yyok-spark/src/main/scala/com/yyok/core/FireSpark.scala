@@ -2,7 +2,7 @@ package com.yyok.core
 
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.{SparkConf, SparkContext}
-import org.fire.spark.streaming.core.kit.Utils
+import com.yyok.core.kit.Utils
 
 import scala.annotation.meta.getter
 import scala.collection.mutable.ArrayBuffer

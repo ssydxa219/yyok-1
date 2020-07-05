@@ -3,7 +3,7 @@ package com.yyok.core.sinks
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
 import org.apache.spark.streaming.Time
-import org.elasticsearch.spark.rdd.EsSpark
+//import org.elasticsearch.spark.rdd.EsSpark
 
 import scala.collection.Map
 import scala.language.postfixOps

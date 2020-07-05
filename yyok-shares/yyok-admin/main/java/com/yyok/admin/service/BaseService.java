@@ -2,7 +2,7 @@ package com.yyok.admin.service;
 
 import com.github.pagehelper.PageHelper;
 import com.yyok.admin.util.EntityUtils;
-import com.yyok.common.vo.RequestDto;
+import com.yyok.common.vars.RequestParam;
 import com.yyok.common.vars.ResponsePage;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,7 +87,7 @@ public abstract class BaseService<M extends Mapper<T>, T> {
         return mapper.selectCountByExample(example);
     }
 
-    public ResponsePage<T> findByPageList(RequestDto dto, Class cls) {
+    public ResponsePage<T> findByPageList(RequestParam dto, Class cls) {
         PageHelper.startPage(dto.getPage(), dto.getSize());
         Example example = new Example(cls);
         if (StringUtils.isNotBlank(dto.getName())) {

@@ -7,13 +7,19 @@ import lombok.Data;
  * @description: 通用Http返回模型
  **/
 @Data
-public class HttpResponse <T> {
+public class HttpResponse<T> {
 
-    /** 错误码 **/
+    /**
+     * 错误码
+     **/
     private int code;
-    /** 提示消息文本 **/
+    /**
+     * 提示消息文本
+     **/
     private String msg;
-    /** 返回数据 **/
+    /**
+     * 返回数据
+     **/
     private T data;
 
     public HttpResponse success() {

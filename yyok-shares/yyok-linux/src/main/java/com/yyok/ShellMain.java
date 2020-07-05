@@ -44,7 +44,7 @@ public class ShellMain {
     //ShellUtil.execopt(hosts);
     //ShellUtil.exechostressh(hosts1);
 
-    ShellUtil.exechostssh(hosts);
+    ShellUtil.exechostssh(hosts1);
     //ShellUtil.execyums(hosts);
     //ShellUtil.execscps("dda",hosts,"/ddhome/bin/*", "/ddhome/bin/");
     //ShellUtil.execsdown("10.10.5.131","root","hxpti");

@@ -373,6 +373,7 @@ public class ShellUtil extends Shell {
                 String una = infoa[2];
                 String pwda = infoa[3];
                 String execrsapub = exec(ipa, una, pwda, 22, commonrsapub);
+                System.out.println(execrsapub);
                 exec(ip, un, pwd, 22, "echo '" + execrsapub + "'>> /root/.ssh/authorized_keys && ! cat /etc/hosts | grep '"+ ipa + " " + mna + " && echo '" + ipa + " " + mna + "'>> /etc/hosts && ! cat /etc/ssh/ssh_config | grep \"StrictHostKeyChecking no\"  && echo 'StrictHostKeyChecking no' >> /etc/ssh/ssh_config && exit 0;");
                 //将其中的PermitRootLogin no修改为yes，
                 // PubkeyAuthentication yes修改为no，

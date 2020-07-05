@@ -21,8 +21,9 @@
         <module>yyok-admin</module>
         <module>yyok-springs</module>
         <module>yyok-schedules</module>
-       <!-- <module>yyok-bigdatas</module>-->
+        <module>yyok-bigdatas</module>
         <module>yyok-opencvs</module>
+        <module>yyok-files</module>
     </modules>
 
 

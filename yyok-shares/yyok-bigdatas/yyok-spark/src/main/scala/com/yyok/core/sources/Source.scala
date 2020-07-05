@@ -1,10 +1,9 @@
 package com.yyok.core.sources
 
+import com.yyok.core.Logging
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.StreamingContext
 import org.apache.spark.streaming.dstream.DStream
-import org.fire.spark.streaming.core.Logging
-import org.slf4j.{Logger, LoggerFactory}
 
 import scala.annotation.meta.getter
 import scala.language.postfixOps

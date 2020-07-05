@@ -4,7 +4,6 @@ import com.yyok.admin.model.SysMenu;
 import com.yyok.admin.security.ResourcesMapping;
 import com.yyok.admin.service.SysMenuService;
 import com.yyok.common.constants.SysConstant;
-import com.yyok.common.vo.RequestDto;
 import com.yyok.common.vars.HttpResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -43,7 +42,7 @@ public class SysMenuController {
     @ApiOperation(value = "菜单查询", notes = "可分页并可根据菜单名称模糊查询")
     @ResourcesMapping(element = "查询", code = "sys_menu_query")
     @GetMapping
-    public HttpResponse query(RequestDto requestDto) {
+    public HttpResponse query(Request requestDto) {
         requestDto.setKey("name");
         return HttpResponse.resultSuccess(sysMenuService.findByPageList(requestDto, SysMenu.class));
     }

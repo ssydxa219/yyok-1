@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger
 import com.yyok.core.FireConfig
 import org.apache.spark.streaming.StreamingContext
 import org.apache.spark.streaming.scheduler._
-import org.fire.spark.streaming.core.FireConfig
+import com.yyok.core.FireConfig
 
 import scala.collection.mutable
 import scala.language.postfixOps
