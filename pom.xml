@@ -39,7 +39,7 @@
         <security.oauth.version>2.3.5.RELEASE</security.oauth.version>
         <security.oauth.auto.version>2.1.2.RELEASE</security.oauth.auto.version>
         <curator.version>2.10.0</curator.version>
-        <jackson.modules>2.10.2</jackson.modules>
+        <jackson.modules>2.12.1</jackson.modules>
         <redis.version>3.1.0</redis.version>
         <servlet.version>4.0.1</servlet.version>
     </properties>
