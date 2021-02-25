@@ -1,7 +1,4 @@
-![alt text](http://www.chinaccs.com.cn/uploadpic/2016/6/17/16/de41e635-7cf1-424a-a609-50e5e90d89fc.png "ddhx Logo")
 
-华信应急物资系统
-================
 
 ----------------
 开发规范说明:
